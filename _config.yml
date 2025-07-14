@@ -104,4 +104,4 @@ deploy:
   type: git
   repo: https://github.com/MYxiaoyi/myxiaoyi.github.io.git
   branch: main
-  message: "更新博客内容: {{ now('YYYY-MM-DD HH:mm:ss') }}"
+  message: "鏇存柊鍗氬鍐呭: {{ now('YYYY-MM-DD HH:mm:ss') }}"
