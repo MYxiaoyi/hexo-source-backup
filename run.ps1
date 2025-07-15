@@ -1,4 +1,4 @@
 hexo clean
 hexo generate
 hexo server
-Write-Host "闈欐�侀〉宸查儴缃插埌:http://localhost:4000" -ForegroundColor Green
+Write-Host "静态页已部署到:http://localhost:4000" -ForegroundColor Green

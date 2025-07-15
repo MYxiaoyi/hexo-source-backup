@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://cdn.nlark.com/yuque/__mermaid_v3/cc80c8c78b25bd8cec4935097b63a29c.svg">
 <meta property="og:image" content="https://cdn.nlark.com/yuque/__mermaid_v3/76f72f9922746d9e491a23de8c8acb64.svg">
 <meta property="article:published_time" content="2025-07-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-07-14T08:03:23.834Z">
+<meta property="article:modified_time" content="2025-07-15T05:19:23.545Z">
 <meta property="article:author" content="冯笑一">
 <meta property="article:tag" content="嵌入式">
 <meta property="article:tag" content="C语言">
@@ -334,7 +334,7 @@
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-07-13T16:00:00.000Z" itemprop="datePublished">2025-07-14</time>
-    <time style="display: none;" id="post-update-time">2025-07-14</time>
+    <time style="display: none;" id="post-update-time">2025-07-15</time>
   </span>
 </div>
 
@@ -501,10 +501,63 @@
 <li>异常处理需包含：超时重传、校验失败回滚等机制</li>
 </ol>
 </blockquote>
-<blockquote>
-<p>个人博客：<a href="http://www.f123.club[冯笑一的小窝]">www.f123.club[冯笑一的小窝]</a>(<a target="_blank" rel="noopener" href="https://www.f123.club/">https://www.f123.club/</a> “菜鸟程序员”)</p>
-</blockquote>
+<div class="post-link-card-wrap">
+    <div class="post-link-card">
+      <a href="https://www.f123.club/wp-content/uploads/2021/08/UN77_C6SA5GU39GBAWJ.png" title="https://www.f123.club/" rel="noopener external nofollow noreferrer" target="_blank"></a>
+      
+      <div class="post-link-card-item-wrap">
+        <div class="post-link-card-title">https://www.f123.club/</div>
+        <div class="post-link-card-excerpt"><span class="icon-link"></span>https://www.f123.club/wp-content/uploads/2021/08/UN77_C6SA5GU39GBAWJ.png</div>
+      </div>
+    </div>
+  </div>
 
+<script>var REIMU_HEATMAP_CONFIG = {articleStats: [{"title":"Hello World","date":"2025-07-14T07:57:18.285Z","updated":"2025-07-14T07:56:58.236Z","wordcount":123,"url":"/2025/07/14/hello-world/"},{"title":"LIN总线OTA升级协议定义","date":"2023-08-14T16:00:00.000Z","updated":"2025-07-14T08:04:37.905Z","wordcount":971,"url":"/2023/08/15/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/"},{"title":"LIN总线OTA升级协议定义","date":"2025-07-13T16:00:00.000Z","updated":"2025-07-15T05:19:23.545Z","wordcount":1169,"url":"/2025/07/14/LIN%E6%80%BB%E7%BA%BFOTA%E5%8D%87%E7%BA%A7%E5%8D%8F%E8%AE%AE%E5%AE%9A%E4%B9%89/"}], i18n: {"en":{"no_articles":"No articles","words":"word(s)","total_articles":"$1 article(s), $2 word(s)"},"ja":{"no_articles":"記事がありません","words":"文字","total_articles":"$1 記事, $2 文字"},"zh-CN":{"no_articles":"没有文章","words":"字","total_articles":"共 $1 篇文章, $2 字"},"zh-TW":{"no_articles":"没有文章","words":"字","total_articles":"共 $1 篇文章, $2 字"}}, levelStandard: "1000,5000,10000"};</script>
+<link rel="stylesheet" href="/css/heat-map.css">
+<div id="heatmap"></div>
+<script src="/js/heat_map.js"></script>
+
+
+
+<div class="roll">
+    <div class="roll-button" onclick="rollTagRoulette()">🕹️</div>
+    <div class="roll-tags"><span class="ready removing"></span></div>
+</div>
+<script>
+var rollTagRoulette = () => {
+  var tags = "记忆衰退,表达欲丧失,更加怠惰,无感,好想睡觉".split(",");
+  var tag = document.querySelector('.roll-tags');
+  tag.innerHTML = '';
+
+  var interval = setInterval(function () {
+    var span = document.createElement('span');
+    span.classList.add('ready');
+    span.classList.add('blur');
+    span.innerText = tags[Math.floor(Math.random() * tags.length)];
+    tag.appendChild(span);
+    spans = tag.querySelectorAll('span');
+    for (var i = 0; i < spans.length; i++) {
+      spans[i].classList.add('removing');
+    }
+  }, 200);
+
+  setTimeout(function () {
+    clearInterval(interval);
+    for (var i = 0; i < spans.length-1; i++) {
+      tag.removeChild(spans[i]);
+    }
+    setTimeout(function () {
+      spans[spans.length-1].classList.remove('blur');
+    }, 100);
+  }, 1000);
+}
+
+rollTagRoulette(); // 页面加载时自动触发一次滚动
+</script>
+
+<link rel="stylesheet" href="/css/tag-roulette.css">
+
+  
       
     </div>
     <footer class="article-footer">
@@ -601,10 +654,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        2.1k
+        2.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:08
+        00:09
       </div>
     
     
@@ -800,7 +853,7 @@
           description: "",
           stripContent: "一、LIN ID枚举定义1. 基本ID枚举123456typedef enum&amp;#123;    gID_OtapCmd_c = 0x31,    gID_OtapGetStatus_c,    gID_OtapData_c&amp;#125; lin_id_t;  2. ID功能说明 **gID_OtapCmd_c (0x31)**：LIN主节点指示从节点开始&amp;#x2F;结束固件传输的命令ID gID_OtapGetStatus_c：LIN主节点获取从节点实时状态的状态查询ID gID_OtapDat",
           date: "Mon Jul 14 2025 00:00:00 GMT+0800",
-          updated: "Mon Jul 14 2025 16:03:23 GMT+0800",
+          updated: "Tue Jul 15 2025 13:19:23 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

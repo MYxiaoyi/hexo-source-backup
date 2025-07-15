@@ -153,4 +153,8 @@ typedef enum
 > 3. 异常处理需包含：超时重传、校验失败回滚等机制
 >
 
-> 个人博客：www.f123.club[冯笑一的小窝](https://www.f123.club/ "菜鸟程序员")
+{% externalLinkCard "" "https://www.f123.club/" "https://www.f123.club/wp-content/uploads/2021/08/UN77_C6SA5GU39GBAWJ.png" %}
+
+{% heatMapCard %}
+
+{% tagRoulette "记忆衰退,表达欲丧失,更加怠惰,无感,好想睡觉" "🕹️" %}
