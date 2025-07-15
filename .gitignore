@@ -1,0 +1,6 @@
+﻿# Hexo 蹇界暐鏂囦欢
+node_modules/
+public/
+.deploy*/
+db.json
+*.log
