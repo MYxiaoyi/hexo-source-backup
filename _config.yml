@@ -101,6 +101,6 @@ theme: reimu
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/MYxiaoyi/myxiaoyi.github.io.git
+  repo: https://github.com/MYxiaoyi/hexo-source-backup.git
   branch: main
   message: "更新博客内容: {{ now('YYYY-MM-DD HH:mm:ss') }}"
