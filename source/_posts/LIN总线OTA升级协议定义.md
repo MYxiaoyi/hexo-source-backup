@@ -1,5 +1,6 @@
 ---
 title: LIN总线OTA升级协议定义
+mermaid: true
 date: 2025-07-14
 tags: [嵌入式, C语言]
 ---
@@ -103,7 +104,35 @@ typedef enum
 11. LIN从节点收到结束命令后完成固件升级流程
 
 ## 五、图表说明
-![](https://cdn.nlark.com/yuque/__mermaid_v3/a81aef17b49c948a035a0e8eebac6f7b.svg)
+
+```mermaid
+sequenceDiagram
+    participant UI as 用户界面
+    participant Updater as OTA升级器
+    participant LIN as LIN设备
+    
+    UI->>Updater: startUpgrade(固件数据, 版本号)
+    activate Updater
+    Updater->>LIN: 打开设备
+    Updater->>LIN: 发送开始命令
+    LIN-->>Updater: 准备就绪状态
+    
+    loop 每个扇区
+        Updater->>LIN: 发送继续命令(扇区号)
+        
+        loop 128次
+            Updater->>LIN: 发送数据帧(8字节)
+        end
+        
+        Updater->>LIN: 查询扇区状态
+        LIN-->>Updater: 返回完成状态
+    end
+    
+    Updater->>LIN: 发送结束命令
+    deactivate Updater
+    Updater->>UI: 发送完成信号
+    UI->>LIN: 关闭设备
+```
 
 ### OTA 固件升级流程说明：
 1. **初始化升级**  

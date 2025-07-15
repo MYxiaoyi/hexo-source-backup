@@ -9,7 +9,7 @@ description: '电子信息爱好者'
 keywords: 'C语言 嵌入式 单片机 Linux'
 author: 冯笑一
 language: zh-CN
-
+avatar: "ico.webp" # 默认就是在avatar文件夹内寻找，请不要包含路径，否则会404
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: http://example.com
@@ -97,6 +97,8 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: reimu
 
+mermaid:
+  enable: true
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
