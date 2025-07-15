@@ -1,6 +1,8 @@
 title: 情侣小游戏
 date: 2025-07-13 17:49:32
+cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b75980959b7d972a0771f_384819317620854048.jpg?x-oss-process=image/resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,jpg
 ---
+
 {% raw %}
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -19,14 +21,12 @@ date: 2025-07-13 17:49:32
         
         body {
             font-family: 'Ma Shan Zheng', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
             color: #5a3e36;
             min-height: 100vh;
             overflow-x: hidden;
             padding: 20px 10px;
             position: relative;
         }
-        
         .container {
             max-width: 500px;
             margin: 0 auto;
@@ -1415,3 +1415,6 @@ date: 2025-07-13 17:49:32
 </body>
 </html>
 {% endraw %}
+
+
+![360X360/bg_xinhai_360.png](https://tc.z.wiki/autoupload/f/pCwQSduTrK74xeM6D4jdFJO7Q2ZCk-TPg9YW4bt5tjGyl5f0KlZfm6UsKj-HyTuv/20250715/QOWX/360X360/bg_xinhai_360.png)
