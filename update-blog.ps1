@@ -1,8 +1,3 @@
-# Hexo 博客一键更新脚本
-# 保存为 update-blog.ps1 在博客根目录
-chcp 65001
-$OutputEncoding = [System.Text.Encoding]::UTF8
-
 # Hexo 博客一键更新脚本 (修复版)
 # 保存为 update-blog.ps1 在博客根目录
 
