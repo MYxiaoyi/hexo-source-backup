@@ -1,6 +1,9 @@
-﻿# Hexo 蹇界暐鏂囦欢
+﻿# Hexo 源文件备份忽略规则
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
 node_modules/
 public/
-.deploy*/
-db.json
-*.log
+.deploy_git/
+.cache/
