@@ -20,15 +20,6 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
             font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
         
-        body {
-            background-attachment: fixed;
-            min-height: 100vh;
-            padding: 20px;
-            color: #5a3e36;
-            overflow-x: hidden;
-            position: relative;
-        }
-        
         /* 装饰元素 */
         .heart {
             position: absolute;
@@ -559,7 +550,7 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
         
         // 初始化
         document.addEventListener('DOMContentLoaded', () => {
-            createDecorations();
+            //createDecorations();
             updateTimer();
             renderlovetimeline();
             
