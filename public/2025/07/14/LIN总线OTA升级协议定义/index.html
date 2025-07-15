@@ -47,7 +47,7 @@
 <meta property="og:image" content="https://cdn.nlark.com/yuque/__mermaid_v3/cc80c8c78b25bd8cec4935097b63a29c.svg">
 <meta property="og:image" content="https://cdn.nlark.com/yuque/__mermaid_v3/76f72f9922746d9e491a23de8c8acb64.svg">
 <meta property="article:published_time" content="2025-07-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-07-15T08:22:10.034Z">
+<meta property="article:modified_time" content="2025-07-15T08:50:51.927Z">
 <meta property="article:author" content="冯笑一">
 <meta property="article:tag" content="嵌入式">
 <meta property="article:tag" content="C语言">
@@ -192,7 +192,7 @@
 <header id="header">
   
     <picture></picture>
-    <img style="visibility:hidden"></img>
+    <img style="position: absolute;top: 0;left: 0;width: 100%;height: 150%;z-index: -2;display: block;background: rgba(237, 138, 220, 0.47);mask: linear-gradient(to top, transparent, #fff 50%);"></img>
   
   <div id="header-outer">
     <div id="header-title">
@@ -529,7 +529,7 @@
     </div>
   </div>
 
-<script>var REIMU_HEATMAP_CONFIG = {articleStats: [{"title":"Hello World","date":"2013-12-24T09:49:32.000Z","updated":"2025-07-15T08:19:05.149Z","wordcount":25,"url":"/2013/12/24/hello-world/"},{"title":"LIN总线OTA升级协议定义","date":"2025-07-13T16:00:00.000Z","updated":"2025-07-15T08:22:10.034Z","wordcount":1288,"url":"/2025/07/14/LIN%E6%80%BB%E7%BA%BFOTA%E5%8D%87%E7%BA%A7%E5%8D%8F%E8%AE%AE%E5%AE%9A%E4%B9%89/"},{"title":"恋爱倒计时","date":"2023-09-15T04:15:02.000Z","updated":"2025-07-15T08:38:09.865Z","wordcount":1530,"url":"/2023/09/15/longtimelove/"},{"title":"LIN总线OTA升级协议定义","date":"2023-08-14T16:00:00.000Z","updated":"2025-07-15T08:21:17.525Z","wordcount":971,"url":"/2023/08/15/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/"},{"title":"情侣小游戏","date":"2025-07-13T09:49:32.000Z","updated":"2025-07-15T08:26:43.761Z","wordcount":4038,"url":"/2025/07/13/love/"}], i18n: {"en":{"no_articles":"No articles","words":"word(s)","total_articles":"$1 article(s), $2 word(s)"},"ja":{"no_articles":"記事がありません","words":"文字","total_articles":"$1 記事, $2 文字"},"zh-CN":{"no_articles":"没有文章","words":"字","total_articles":"共 $1 篇文章, $2 字"},"zh-TW":{"no_articles":"没有文章","words":"字","total_articles":"共 $1 篇文章, $2 字"}}, levelStandard: "1000,5000,10000"};</script>
+<script>var REIMU_HEATMAP_CONFIG = {articleStats: [{"title":"Hello World","date":"2013-12-24T09:49:32.000Z","updated":"2025-07-15T08:19:05.149Z","wordcount":25,"url":"/2013/12/24/hello-world/"},{"title":"LIN总线OTA升级协议定义","date":"2025-07-13T16:00:00.000Z","updated":"2025-07-15T08:50:51.927Z","wordcount":1288,"url":"/2025/07/14/LIN%E6%80%BB%E7%BA%BFOTA%E5%8D%87%E7%BA%A7%E5%8D%8F%E8%AE%AE%E5%AE%9A%E4%B9%89/"},{"title":"恋爱倒计时","date":"2023-09-15T04:15:02.000Z","updated":"2025-07-15T08:38:09.865Z","wordcount":1530,"url":"/2023/09/15/longtimelove/"},{"title":"情侣小游戏","date":"2025-07-13T09:49:32.000Z","updated":"2025-07-15T08:26:43.761Z","wordcount":4038,"url":"/2025/07/13/love/"},{"title":"LIN总线OTA升级协议定义","date":"2023-08-14T16:00:00.000Z","updated":"2025-07-15T08:21:17.525Z","wordcount":971,"url":"/2023/08/15/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/"}], i18n: {"en":{"no_articles":"No articles","words":"word(s)","total_articles":"$1 article(s), $2 word(s)"},"ja":{"no_articles":"記事がありません","words":"文字","total_articles":"$1 記事, $2 文字"},"zh-CN":{"no_articles":"没有文章","words":"字","total_articles":"共 $1 篇文章, $2 字"},"zh-TW":{"no_articles":"没有文章","words":"字","total_articles":"共 $1 篇文章, $2 字"}}, levelStandard: "1000,5000,10000"};</script>
 <link rel="stylesheet" href="/css/heat-map.css">
 <div id="heatmap"></div>
 <script src="/js/heat_map.js"></script>
@@ -850,7 +850,7 @@ rollTagRoulette(); // 页面加载时自动触发一次滚动
           description: "",
           stripContent: "一、LIN ID枚举定义1. 基本ID枚举123456typedef enum&amp;#123;    gID_OtapCmd_c = 0x31,    gID_OtapGetStatus_c,    gID_OtapData_c&amp;#125; lin_id_t;  2. ID功能说明 **gID_OtapCmd_c (0x31)**：LIN主节点指示从节点开始&amp;#x2F;结束固件传输的命令ID gID_OtapGetStatus_c：LIN主节点获取从节点实时状态的状态查询ID gID_OtapDat",
           date: "Mon Jul 14 2025 00:00:00 GMT+0800",
-          updated: "Tue Jul 15 2025 16:22:10 GMT+0800",
+          updated: "Tue Jul 15 2025 16:50:51 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

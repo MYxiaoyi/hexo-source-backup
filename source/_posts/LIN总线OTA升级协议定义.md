@@ -3,7 +3,7 @@ title: LIN总线OTA升级协议定义
 mermaid: true
 date: 2025-07-14
 tags: [嵌入式, C语言]
-cover: false
+cover: rgba(237, 138, 220, 0.47)
 ---
 ## 一、LIN ID枚举定义
 ### 1. 基本ID枚举
