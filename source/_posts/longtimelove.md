@@ -21,7 +21,6 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
         }
         
         body {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
             background-attachment: fixed;
             min-height: 100vh;
             padding: 20px;
@@ -191,14 +190,14 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
             border-radius: 3px;
         }
         
-        .timeline {
+        .lovetimeline {
             position: relative;
             max-width: 900px;
             margin: 0 auto;
             padding: 40px 0;
         }
         
-        .timeline::before {
+        .lovetimeline::before {
             content: '';
             position: absolute;
             top: 0;
@@ -210,25 +209,25 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
             border-radius: 10px;
         }
         
-        .timeline-item {
+        .lovetimeline-item {
             position: relative;
             margin-bottom: 50px;
             width: 50%;
             animation: slideIn 0.8s ease-out;
         }
         
-        .timeline-item:nth-child(odd) {
+        .lovetimeline-item:nth-child(odd) {
             left: 0;
             padding-right: 70px;
             text-align: right;
         }
         
-        .timeline-item:nth-child(even) {
+        .lovetimeline-item:nth-child(even) {
             left: 50%;
             padding-left: 70px;
         }
         
-        .timeline-content {
+        .lovetimeline-content {
             background: white;
             padding: 25px;
             border-radius: 15px;
@@ -237,12 +236,12 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .timeline-content:hover {
+        .lovetimeline-content:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         
-        .timeline-item:nth-child(odd) .timeline-content::after {
+        .lovetimeline-item:nth-child(odd) .lovetimeline-content::after {
             content: '';
             position: absolute;
             top: 20px;
@@ -252,7 +251,7 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
             border-color: transparent transparent transparent white;
         }
         
-        .timeline-item:nth-child(even) .timeline-content::after {
+        .lovetimeline-item:nth-child(even) .lovetimeline-content::after {
             content: '';
             position: absolute;
             top: 20px;
@@ -262,7 +261,7 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
             border-color: transparent white transparent transparent;
         }
         
-        .timeline-date {
+        .lovetimeline-date {
             font-weight: 600;
             color: #6c5ce7;
             margin-bottom: 10px;
@@ -270,7 +269,7 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
             font-size: 1.1rem;
         }
         
-        .timeline-title {
+        .lovetimeline-title {
             font-size: 1.4rem;
             margin-bottom: 10px;
             color: #e84393;
@@ -282,7 +281,7 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
             font-weight: 500;
         }
         
-        .icon {
+        .icon2 {
             position: absolute;
             width: 50px;
             height: 50px;
@@ -296,12 +295,12 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         }
         
-        .timeline-item:nth-child(odd) .icon {
+        .lovetimeline-item:nth-child(odd) .icon2 {
             right: -25px;
             top: 0;
         }
         
-        .timeline-item:nth-child(even) .icon {
+        .lovetimeline-item:nth-child(even) .icon2 {
             left: -25px;
             top: 0;
         }
@@ -330,11 +329,11 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
                 font-size: 2rem;
             }
             
-            .timeline::before {
+            .lovetimeline::before {
                 left: 30px;
             }
             
-            .timeline-item {
+            .lovetimeline-item {
                 width: 100%;
                 padding-left: 80px !important;
                 padding-right: 20px !important;
@@ -342,14 +341,14 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
                 text-align: left !important;
             }
             
-            .timeline-item:nth-child(even) .icon,
-            .timeline-item:nth-child(odd) .icon {
+            .lovetimeline-item:nth-child(even) .icon2,
+            .lovetimeline-item:nth-child(odd) .icon2 {
                 left: 5px;
                 right: auto;
             }
             
-            .timeline-item:nth-child(even) .timeline-content::after,
-            .timeline-item:nth-child(odd) .timeline-content::after {
+            .lovetimeline-item:nth-child(even) .lovetimeline-content::after,
+            .lovetimeline-item:nth-child(odd) .lovetimeline-content::after {
                 left: -15px;
                 right: auto;
                 border-width: 10px 15px 10px 0;
@@ -418,7 +417,7 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
         <div class="events-section">
             <h2 class="section-title">我们的美好回忆</h2>
             
-            <div class="timeline" id="timeline">
+            <div class="lovetimeline" id="lovetimeline">
                 <!-- 时间轴内容将通过JS动态生成 -->
             </div>
         </div>
@@ -479,7 +478,7 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
         }
         
         // 渲染时间轴事件
-        function renderTimeline() {
+        function renderlovetimeline() {
             const events = [
                 { title: '第1次表白👩‍❤️‍👨', start: '2023-09-15' },
                 { title: '第1次牵手🤝&拥抱💏', start: '2023-10-01' },
@@ -492,7 +491,7 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
                 { title: '一起看电影🎞🎞', start: '2024-12-30' }
             ];
             
-            const timeline = document.getElementById('timeline');
+            const lovetimeline = document.getElementById('lovetimeline');
             const startDate = new Date('2023-09-15');
             
             // 按日期排序
@@ -503,22 +502,22 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
                 const diffTime = eventDate - startDate;
                 const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                 
-                const timelineItem = document.createElement('div');
-                timelineItem.className = 'timeline-item';
+                const lovetimelineItem = document.createElement('div');
+                lovetimelineItem.className = 'lovetimeline-item';
                 
                 const icon = document.createElement('div');
-                icon.className = 'icon';
+                icon.className = 'icon2';
                 icon.innerHTML = getEventIcon(event.title);
                 
                 const content = document.createElement('div');
-                content.className = 'timeline-content';
+                content.className = 'lovetimeline-content';
                 
                 const date = document.createElement('span');
-                date.className = 'timeline-date';
+                date.className = 'lovetimeline-date';
                 date.textContent = formatDate(eventDate);
                 
                 const title = document.createElement('h3');
-                title.className = 'timeline-title';
+                title.className = 'lovetimeline-title';
                 title.textContent = event.title;
                 
                 const daysAfter = document.createElement('p');
@@ -529,10 +528,10 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
                 content.appendChild(title);
                 content.appendChild(daysAfter);
                 
-                timelineItem.appendChild(icon);
-                timelineItem.appendChild(content);
+                lovetimelineItem.appendChild(icon);
+                lovetimelineItem.appendChild(content);
                 
-                timeline.appendChild(timelineItem);
+                lovetimeline.appendChild(lovetimelineItem);
             });
         }
         
@@ -562,7 +561,7 @@ cover: https://upload-bbs.miyoushe.com/upload/2024/02/14/292762008/f0cb3676199b7
         document.addEventListener('DOMContentLoaded', () => {
             createDecorations();
             updateTimer();
-            renderTimeline();
+            renderlovetimeline();
             
             // 每秒更新计时器
             setInterval(updateTimer, 1000);
