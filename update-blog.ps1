@@ -1,69 +1,47 @@
-# Hexo 博客一键更新脚本 (修复版)
-# 保存为 update-blog.ps1 在博客根目录
+# Hexo 双仓库部署脚本
+# 保存为 deploy.ps1 在博客根目录
+# 功能：1. 部署静态页到 MYxiaoyi.github.io  2. 备份源文件到 hexo-source-backup
 
-# 配置信息
+# 配置信息 - 请修改以下变量
 $GitHubUsername = "MYxiaoyi"
+$PagesRepo = "https://github.com/$GitHubUsername/$GitHubUsername.github.io.git"
 $BackupRepo = "https://github.com/$GitHubUsername/hexo-source-backup.git"
 
-# 函数：检查命令是否存在
-function Test-CommandExists {
-    param($command)
-    return (Get-Command $command -ErrorAction SilentlyContinue) -ne $null
-}
-
 # 检查必要命令
-if (-not (Test-CommandExists "git")) {
+if (-not (Get-Command "git" -ErrorAction SilentlyContinue)) {
     Write-Host "错误: Git 未安装或不在 PATH 中" -ForegroundColor Red
     exit 1
 }
 
-if (-not (Test-CommandExists "hexo")) {
+if (-not (Get-Command "hexo" -ErrorAction SilentlyContinue)) {
     Write-Host "错误: Hexo 未正确安装" -ForegroundColor Red
     exit 1
 }
 
-# 第一步：更新博客内容
-Write-Host "`n===== 开始更新博客 =====" -ForegroundColor Cyan
+# 第一步：生成并部署静态页到 GitHub Pages
+Write-Host "`n===== 部署静态页到 GitHub Pages =====" -ForegroundColor Cyan
 hexo clean
 hexo generate
-hexo deploy
-Write-Host "博客已部署到 GitHub Pages" -ForegroundColor Green
+Write-Host "生成的静态文件位置: public/" -ForegroundColor Yellow
+
+# 部署到 GitHub Pages 仓库
+Set-Location public
+git init
+git remote add origin $PagesRepo
+git add .
+git commit -m "自动更新静态页: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+git push -u origin main --force
+Set-Location ..
+Write-Host "静态页已部署到: $PagesRepo" -ForegroundColor Green
 Write-Host "访问地址: https://${GitHubUsername}.github.io" -ForegroundColor Cyan
 
-# 第二步：备份源文件（修复版）
-Write-Host "`n===== 开始备份源文件 =====" -ForegroundColor Cyan
+# 第二步：备份源文件到备份仓库
+Write-Host "`n===== 备份源文件到仓库 =====" -ForegroundColor Cyan
 
-# 创建专用备份目录
-$backupDir = "hexo-backup-temp"
-New-Item -ItemType Directory -Path $backupDir -Force | Out-Null
-
-# 仅复制必要的Hexo源文件
-$essentialFiles = @(
-    "_config.yml",
-    "_config.butterfly.yml",  # 如果您使用Butterfly主题
-    "scaffolds/",
-    "source/",
-    "themes/",
-    "package.json",
-    "package-lock.json"
-)
-
-foreach ($file in $essentialFiles) {
-    if (Test-Path $file) {
-        Copy-Item -Path $file -Destination "$backupDir/$file" -Recurse -Force
-    }
-}
-
-# 进入备份目录
-Set-Location $backupDir
-
-# 初始化Git仓库
-git init
-git remote add origin $BackupRepo
-
-# 创建针对Hexo的.gitignore
-@"
-# Hexo备份忽略文件
+# 创建源文件备份的.gitignore
+if (-not (Test-Path ".gitignore")) {
+    @"
+# Hexo 源文件备份忽略规则
 .DS_Store
 Thumbs.db
 *.log
@@ -71,20 +49,22 @@ Thumbs.db
 node_modules/
 public/
 .deploy_git/
+.cache/
 "@ | Out-File -FilePath ".gitignore" -Encoding utf8
+}
 
-# 添加并提交文件
+# 初始化源文件仓库并推送
+if (-not (Test-Path ".git")) {
+    git init
+    git remote add origin $BackupRepo
+    git checkout -b main
+}
+
 git add .
-$timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-git commit -m "自动备份: $timestamp"
-
-# 强制推送到备份仓库
-git push -u origin HEAD:main --force
-
-# 返回原始目录并清理临时文件
-Set-Location ..
-Remove-Item $backupDir -Recurse -Force
+$backupMessage = "源文件备份: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+git commit -m $backupMessage
+git push -u origin main --force
 
 Write-Host "`n===== 操作完成 =====" -ForegroundColor Green
-Write-Host "博客已更新并部署" -ForegroundColor Yellow
+Write-Host "静态页已部署到: $PagesRepo" -ForegroundColor Yellow
 Write-Host "源文件已备份到: $BackupRepo" -ForegroundColor Yellow
