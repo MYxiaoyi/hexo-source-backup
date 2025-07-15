@@ -1,55 +1,55 @@
-# Hexo åŒä»“åº“éƒ¨ç½²è„šæœ¬ (ä¿®å¤ç‰ˆ)
-# ä¿å­˜ä¸º deploy.ps1 åœ¨åšå®¢æ ¹ç›®å½•
+# Hexo Ë«²Ö¿â²¿Êğ½Å±¾ (ĞŞ¸´°æ)
+# ±£´æÎª deploy.ps1 ÔÚ²©¿Í¸ùÄ¿Â¼
 
 $GitHubUsername = "MYxiaoyi"
 $PagesRepo = "https://github.com/$GitHubUsername/$GitHubUsername.github.io.git"
 $BackupRepo = "https://github.com/$GitHubUsername/hexo-source-backup.git"
 
-# æ£€æŸ¥å¿…è¦å‘½ä»¤
+# ¼ì²é±ØÒªÃüÁî
 if (-not (Get-Command "git" -ErrorAction SilentlyContinue)) {
-    Write-Host "é”™è¯¯: Git æœªå®‰è£…æˆ–ä¸åœ¨ PATH ä¸­" -ForegroundColor Red
+    Write-Host "´íÎó: Git Î´°²×°»ò²»ÔÚ PATH ÖĞ" -ForegroundColor Red
     exit 1
 }
 
 if (-not (Get-Command "hexo" -ErrorAction SilentlyContinue)) {
-    Write-Host "é”™è¯¯: Hexo æœªæ­£ç¡®å®‰è£…" -ForegroundColor Red
+    Write-Host "´íÎó: Hexo Î´ÕıÈ·°²×°" -ForegroundColor Red
     exit 1
 }
 
-# ç¬¬ä¸€æ­¥ï¼šéƒ¨ç½²é™æ€é¡µ
-Write-Host "`n===== éƒ¨ç½²é™æ€é¡µåˆ° GitHub Pages =====" -ForegroundColor Cyan
+# µÚÒ»²½£º²¿Êğ¾²Ì¬Ò³
+Write-Host "`n===== ²¿Êğ¾²Ì¬Ò³µ½ GitHub Pages =====" -ForegroundColor Cyan
 hexo clean
 hexo generate
 
-# è¿›å…¥ public ç›®å½•å¤„ç†
+# ½øÈë public Ä¿Â¼´¦Àí
 Set-Location public
 
-# åˆå§‹åŒ– Git ä»“åº“
+# ³õÊ¼»¯ Git ²Ö¿â
 git init
 
-# æ·»åŠ æ‰€æœ‰æ–‡ä»¶
+# Ìí¼ÓËùÓĞÎÄ¼ş
 git add .
 
-# æäº¤æ›´æ”¹
-git commit -m "è‡ªåŠ¨æ›´æ–°é™æ€é¡µ: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+# Ìá½»¸ü¸Ä
+git commit -m "×Ô¶¯¸üĞÂ¾²Ì¬Ò³: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
 
-# è¿æ¥åˆ°è¿œç¨‹ä»“åº“
+# Á¬½Óµ½Ô¶³Ì²Ö¿â
 git remote add origin $PagesRepo
 
-# å¼ºåˆ¶æ¨é€åˆ° main åˆ†æ”¯ï¼ˆç¡®ä¿åˆ†æ”¯å­˜åœ¨ï¼‰
-git branch -M main  # ç¡®ä¿åˆ†æ”¯åä¸º main
+# Ç¿ÖÆÍÆËÍµ½ main ·ÖÖ§£¨È·±£·ÖÖ§´æÔÚ£©
+git branch -M main  # È·±£·ÖÖ§ÃûÎª main
 git push -u origin main --force
 
 Set-Location ..
-Write-Host "é™æ€é¡µå·²éƒ¨ç½²åˆ°: $PagesRepo" -ForegroundColor Green
-Write-Host "è®¿é—®åœ°å€: https://${GitHubUsername}.github.io" -ForegroundColor Cyan
+Write-Host "¾²Ì¬Ò³ÒÑ²¿Êğµ½: $PagesRepo" -ForegroundColor Green
+Write-Host "·ÃÎÊµØÖ·: https://${GitHubUsername}.github.io" -ForegroundColor Cyan
 
-# ç¬¬äºŒæ­¥ï¼šå¤‡ä»½æºæ–‡ä»¶
-Write-Host "`n===== å¤‡ä»½æºæ–‡ä»¶åˆ°ä»“åº“ =====" -ForegroundColor Cyan
+# µÚ¶ş²½£º±¸·İÔ´ÎÄ¼ş
+Write-Host "`n===== ±¸·İÔ´ÎÄ¼şµ½²Ö¿â =====" -ForegroundColor Cyan
 
-# åˆ›å»ºæˆ–æ›´æ–° .gitignore
+# ´´½¨»ò¸üĞÂ .gitignore
 @"
-# Hexo æºæ–‡ä»¶å¤‡ä»½å¿½ç•¥è§„åˆ™
+# Hexo Ô´ÎÄ¼ş±¸·İºöÂÔ¹æÔò
 .DS_Store
 Thumbs.db
 *.log
@@ -60,22 +60,22 @@ public/
 .cache/
 "@ | Out-File -FilePath ".gitignore" -Encoding utf8 -Force
 
-# åˆå§‹åŒ–ä»“åº“ï¼ˆå¦‚æœå°šæœªåˆå§‹åŒ–ï¼‰
+# ³õÊ¼»¯²Ö¿â£¨Èç¹ûÉĞÎ´³õÊ¼»¯£©
 if (-not (Test-Path ".git")) {
     git init
     git remote add origin $BackupRepo
 }
 
-# æ·»åŠ å¹¶æäº¤æ‰€æœ‰æ–‡ä»¶
+# Ìí¼Ó²¢Ìá½»ËùÓĞÎÄ¼ş
 git add .
-git commit -m "æºæ–‡ä»¶å¤‡ä»½: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+git commit -m "Ô´ÎÄ¼ş±¸·İ: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
 
-# ç¡®ä¿æœ¬åœ°åˆ†æ”¯åä¸º main
+# È·±£±¾µØ·ÖÖ§ÃûÎª main
 git branch -M main
 
-# å¼ºåˆ¶æ¨é€åˆ°å¤‡ä»½ä»“åº“
+# Ç¿ÖÆÍÆËÍµ½±¸·İ²Ö¿â
 git push -u origin main --force
 
-Write-Host "`n===== æ“ä½œå®Œæˆ =====" -ForegroundColor Green
-Write-Host "é™æ€é¡µå·²éƒ¨ç½²åˆ°: $PagesRepo" -ForegroundColor Yellow
-Write-Host "æºæ–‡ä»¶å·²å¤‡ä»½åˆ°: $BackupRepo" -ForegroundColor Yellow
+Write-Host "`n===== ²Ù×÷Íê³É =====" -ForegroundColor Green
+Write-Host "¾²Ì¬Ò³ÒÑ²¿Êğµ½: $PagesRepo" -ForegroundColor Yellow
+Write-Host "Ô´ÎÄ¼şÒÑ±¸·İµ½: $BackupRepo" -ForegroundColor Yellow
