@@ -5,6 +5,8 @@ date: 2025-07-14
 tags: [嵌入式, C语言]
 cover: rgba(237, 138, 220, 0.47)
 comments: true
+mermaid: true
+categories: [嵌入式]
 ---
 ## 一、LIN ID枚举定义
 ### 1. 基本ID枚举
@@ -138,27 +140,43 @@ sequenceDiagram
 
 ### OTA 固件升级流程说明：
 1. **初始化升级**  
-
-![](https://cdn.nlark.com/yuque/__mermaid_v3/ab6cad5a36f5f41f18b29e73a8ebe3f6.svg)
-
+```mermaid
+sequenceDiagram
+    UI->>Updater: startUpgrade(固件数据, 版本号)
+```
     - 用户界面调用 OTA 升级器，传入固件数据和版本号
 2. **LIN 设备准备**  
-
-![](https://cdn.nlark.com/yuque/__mermaid_v3/04e03aee83590ddade7d138b1fe14161.svg)
-
+```mermaid
+sequenceDiagram
+    Updater->>LIN: 打开设备
+    Updater->>LIN: 发送开始命令
+    LIN-->>Updater: 准备就绪状态
+```
     - 打开 LIN 设备连接  
     - 发送升级开始命令
 3. **扇区数据写入**  
-
-![](https://cdn.nlark.com/yuque/__mermaid_v3/cc80c8c78b25bd8cec4935097b63a29c.svg)
-
+4. 
+```mermaid
+sequenceDiagram
+    loop 每个扇区
+        Updater->>LIN: 发送继续命令(扇区号)
+        loop 128次
+            Updater->>LIN: 发送数据帧(8字节)
+        end
+        Updater->>LIN: 查询扇区状态
+        LIN-->>Updater: 返回完成状态
+    end
+```
     - 循环处理每个扇区（共 128 帧/扇区）  
     - 每帧发送 8 字节数据  
     - 查询并确认扇区写入状态
-4. **升级完成**  
-
-![](https://cdn.nlark.com/yuque/__mermaid_v3/76f72f9922746d9e491a23de8c8acb64.svg)
-
+1. **升级完成**  
+```mermaid
+sequenceDiagram
+    Updater->>LIN: 发送结束命令
+    Updater->>UI: 发送完成信号
+    UI->>LIN: 关闭设备
+```
     - 发送升级结束命令  
     - 通知用户界面升级完成  
     - 关闭 LIN 设备连接

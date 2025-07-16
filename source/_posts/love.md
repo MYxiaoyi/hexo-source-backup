@@ -673,7 +673,7 @@ categories: 技术分享,开源项目,工具
 </head>
 <body>
     <!-- 飘动的心形装饰 -->
-    <div class="floating" style="top: 5%; left: 10%;">
+    <!-- <div class="floating" style="top: 5%; left: 10%;">
         <i class="fas fa-heart heart"></i>
     </div>
     <div class="floating" style="top: 15%; right: 15%;">
@@ -684,7 +684,7 @@ categories: 技术分享,开源项目,工具
     </div>
     <div class="floating" style="bottom: 15%; right: 10%;">
         <i class="fas fa-heart heart"></i>
-    </div>
+    </div> -->
     
     <div class="container">
         <header>
