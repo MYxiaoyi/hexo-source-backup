@@ -1,8 +1,8 @@
 ---
 title: 基于Cortex-M0内核的Bootloader开发指南
 mermaid: true
-date: 2025-03-28
-tags: [嵌入式, C语言, 笔记, python, linux,ros]
+date: 2024-03-22
+tags: [嵌入式, C语言, 笔记, python, linux, ros]
 comments: true
 categories: [嵌入式]
 ---
