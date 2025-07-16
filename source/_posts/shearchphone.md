@@ -73,11 +73,11 @@ sponsor: true # 是否展示赞助二维码？
 </head>
 <body>
     <div class="container">
-        <h1>网站内容区域</h1>
+        <h1>冯笑一的小工具</h1>
         
         <div class="content">
             <div class="main-content">
-                <h2>网站主要内容</h2>
+                <h2>工具内容</h2>
                 <p>这是一个示例网站，展示如何嵌入手机归属地查询小工具而不影响页面样式。</p>
                 <p>小工具使用 Shadow DOM 技术封装，确保其样式不会影响到宿主页面。</p>
                 
