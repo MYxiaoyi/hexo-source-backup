@@ -14,7 +14,7 @@ sponsor: true # 是否展示赞助二维码？
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>手机归属地查询工具</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    
     <style>
         bodydiv {
             margin: 0;
@@ -538,42 +538,47 @@ sponsor: true # 是否展示赞助二维码？
                 resultContainer.classList.remove('active');
                 errorMsg.style.display = 'none';
                 
-                // 使用360 API查询
-                fetch(`https://cx.shouji.360.cn/phonearea.php?number=${phone}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        spinner.style.display = 'none';
+                // JSONP 回调函数名（确保唯一性）
+                const callbackName = `jsonpCallback_${Date.now()}`;
+                
+                // 创建 script 元素
+                const script = document.createElement('script');
+                
+                // 设置 JSONP 请求
+                script.src = `https://cx.shouji.360.cn/phonearea.php?number=${phone}&callback=${callbackName}`;
+                
+                // 处理 JSONP 响应
+                window[callbackName] = function(data) {
+                    // 清理
+                    document.body.removeChild(script);
+                    delete window[callbackName];
+                    
+                    spinner.style.display = 'none';
+                    
+                    if (data.code === 0) {
+                        // 更新结果
+                        resultPhone.textContent = formatPhoneNumber(phone);
                         
-                        if (data.code === 0) {
-                            // 更新结果
-                            resultPhone.textContent = formatPhoneNumber(phone);
-                            
-                            const province = data.data.province || '未知';
-                            const city = data.data.city || '未知';
-                            let operator = data.data.sp || '未知';
-                            
-                            // 标准化运营商名称
-                            operator = operator.replace('中国', '');
-                            
-                            resultOperator.textContent = operator;
-                            resultProvince.textContent = province;
-                            resultCity.textContent = city;
-                            
-                            // 添加到查询历史
-                            addToHistory(phone, `${province}·${operator}`);
-                            
-                            // 显示结果
-                            resultContainer.classList.add('active');
-                        } else {
-                            showError('未查询到该号码信息，请重试');
-                        }
-                    })
-                    .catch(error => {
-                        spinner.style.display = 'none';
-                        showError('查询失败，请检查网络连接或稍后再试');
-                        console.error('查询错误:', error);
-                    });
-            }
+                        const province = data.data.province || '未知';
+                        const city = data.data.city || '未知';
+                        let operator = data.data.sp || '未知';
+                        
+                        // 标准化运营商名称
+                        operator = operator.replace('中国', '');
+                        
+                        resultOperator.textContent = operator;
+                        resultProvince.textContent = province;
+                        resultCity.textContent = city;
+                        
+                        // 添加到查询历史
+                        addToHistory(phone, `${province}·${operator}`);
+                        
+                        // 显示结果
+                        resultContainer.classList.add('active');
+                    } else {
+                        showError('未查询到该号码信息，请重试');
+                    }
+                };
             
             // 显示错误信息
             function showError(message) {
