@@ -213,7 +213,44 @@ void main() {
 
 ### 2. 引用不在代码段中的函数
 
-在嵌入式系统中，常用于调用固化在ROM中的系统函数。
+在嵌入式系统中，常用于调用固化在ROM中的系统函数。例如编写bootload的跳转函数
+```c
+#define INFLASH_ADDR_BOOTLOAD   ((uint32_t)0x08000000)  // bootload的起始地址
+
+/* 初始化堆栈指针 */
+void MSR_MSP(uint32_t addr) 
+{
+  __ASM("msr msp, r0");  // set Main Stack value 将主堆栈地址保存到MSP寄存器(R13)中
+  __ASM("bx lr");        // 跳转到lr中存放的地址处。bx是强制跳转指令 lr是连接寄存器，是STM32单片机的R14
+}
+
+typedef void (*IapFun)(void); // 声明一个函数指针，用于跳转到绝对地址执行程序
+IapFun JumpToBootload; 
+
+/*!
+ *  功  能: 跳转到应用程序 
+ *  param1: 用户代码起始地址
+ *  retval: 无返回值
+ */
+void IapLoadBootload(void)
+{
+    /*
+        应用程序APP中设置把 中断向量表 放置在0x08003000 开始的位置；而中断向量表里第一个放的就是栈顶地址的值
+        也就是说，这句话即通过判断栈顶地址值是否正确（是否在0x2000 0000 - 0x 2000 2000之间） 来判断是否应用程序
+        已经下载了，因为应用程序的启动文件刚开始就去初始化化栈空间，如果栈顶值对了，说应用程已经下载了启动文件,初始化也执行了；
+    */
+        
+        
+	  if( ((*(uint32_t*)INFLASH_ADDR_BOOTLOAD) & 0x2FFE0000) == 0x20000000 )// 检查栈顶地址是否合法,查看参考手册内存章节的SRAM小节
+	  { 
+        BoardDisableIrq();   // 禁止中断
+		    JumpToBootload = (IapFun)*(uint32_t*)(INFLASH_ADDR_BOOTLOAD+4);        // 用户代码区第二个字为程序开始地址(新程序复位地址)		
+		    MSR_MSP(*(uint32_t*)INFLASH_ADDR_BOOTLOAD);		                // 初始化APP堆栈指针(用户代码区的第一个字用于存放栈顶地址)
+		                                 
+        JumpToBootload();	                                    // 设置PC指针为bootload复位中断函数的地址，往下执行
+	  }
+}
+```
 
 ## 五、嵌入式系统中结构体函数指针的应用
 
