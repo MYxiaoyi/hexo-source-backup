@@ -234,21 +234,15 @@ IapFun JumpToBootload;
  */
 void IapLoadBootload(void)
 {
-    /*
-        应用程序APP中设置把 中断向量表 放置在0x08003000 开始的位置；而中断向量表里第一个放的就是栈顶地址的值
-        也就是说，这句话即通过判断栈顶地址值是否正确（是否在0x2000 0000 - 0x 2000 2000之间） 来判断是否应用程序
-        已经下载了，因为应用程序的启动文件刚开始就去初始化化栈空间，如果栈顶值对了，说应用程已经下载了启动文件,初始化也执行了；
-    */
-        
-        
-	  if( ((*(uint32_t*)INFLASH_ADDR_BOOTLOAD) & 0x2FFE0000) == 0x20000000 )// 检查栈顶地址是否合法,查看参考手册内存章节的SRAM小节
-	  { 
-        BoardDisableIrq();   // 禁止中断
-		    JumpToBootload = (IapFun)*(uint32_t*)(INFLASH_ADDR_BOOTLOAD+4);        // 用户代码区第二个字为程序开始地址(新程序复位地址)		
-		    MSR_MSP(*(uint32_t*)INFLASH_ADDR_BOOTLOAD);		                // 初始化APP堆栈指针(用户代码区的第一个字用于存放栈顶地址)
-		                                 
-        JumpToBootload();	                                    // 设置PC指针为bootload复位中断函数的地址，往下执行
-	  }
+
+    if( ((*(uint32_t*)INFLASH_ADDR_BOOTLOAD) & 0x2FFE0000) == 0x20000000 )// 检查栈顶地址是否合法
+    { 
+    BoardDisableIrq();   // 禁止中断
+        JumpToBootload = (IapFun)*(uint32_t*)(INFLASH_ADDR_BOOTLOAD+4);  // 用户代码区第二个字为程序开始地址(新程序复位地址)		
+        MSR_MSP(*(uint32_t*)INFLASH_ADDR_BOOTLOAD);		                // 初始化APP堆栈指针(用户代码区的第一个字用于存放栈顶地址)
+                                        
+    JumpToBootload();	                                    // 设置PC指针为bootload复位中断函数的地址，往下执行
+    }
 }
 ```
 
