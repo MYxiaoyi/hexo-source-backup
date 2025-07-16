@@ -4,6 +4,7 @@ mermaid: true
 date: 2025-07-14
 tags: [嵌入式, C语言]
 cover: rgba(237, 138, 220, 0.47)
+comments: true
 ---
 ## 一、LIN ID枚举定义
 ### 1. 基本ID枚举

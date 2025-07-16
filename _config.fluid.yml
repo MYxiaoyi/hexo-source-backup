@@ -812,6 +812,7 @@ gitalk:
 # Based on LeanCloud
 # See: https://valine.js.org/
 valine:
+  enable: true
   appId:
   appKey:
   path: window.location.pathname
