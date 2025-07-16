@@ -12,6 +12,8 @@
     "version": "7.3.0"
   },
   "dependencies": {
+    "@reimujs/hexo-algoliasearch": "^0.1.0",
+    "@reimujs/hexo-renderer-markdown-it-plus": "^1.2.1",
     "hexo": "^7.0.0",
     "hexo-deployer-git": "^4.0.0",
     "hexo-filter-mermaid-diagrams": "^1.0.5",
@@ -20,12 +22,13 @@
     "hexo-generator-index": "^3.0.0",
     "hexo-generator-tag": "^2.0.0",
     "hexo-renderer-ejs": "^2.0.0",
-    "hexo-renderer-marked": "^6.0.0",
     "hexo-renderer-stylus": "^3.0.0",
     "hexo-server": "^3.0.0",
     "hexo-theme-butterfly": "^5.4.2",
     "hexo-theme-fluid": "^1.9.8",
     "hexo-theme-landscape": "^1.0.0",
-    "hexo-theme-reimu": "^1.9.0"
+    "hexo-theme-reimu": "^1.9.0",
+    "live2d-widget-model-shizuku": "^1.0.5",
+    "live2d-widget-model-z16": "^1.0.5"
   }
 }

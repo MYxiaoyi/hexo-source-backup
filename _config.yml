@@ -44,6 +44,7 @@ post_asset_folder: false
 relative_link: false
 future: true
 
+
 #代码块配置
 syntax_highlighter: highlight.js
 highlight:
@@ -56,6 +57,25 @@ prismjs:
   preprocess: true
   line_number: true
   tab_replace: ''
+#搜索功能
+algolia:
+  appId: "DI68WODI4R"
+  apiKey: "65336b464ace197e5c1ba931001df430"
+  adminApiKey: "75d4edc8f1091ed83ea58d2f26305f9a"
+  chunkSize: 5000
+  indexName: "my-hexo-blog"
+  fields:
+    - content:strip:truncate,0,500
+    - excerpt:strip
+    - gallery
+    - permalink
+    - photos
+    - slug
+    - tags
+    - title
+#公式
+markdown_it_plus:
+  rawLaTeX: true
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
