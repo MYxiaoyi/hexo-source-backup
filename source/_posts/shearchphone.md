@@ -3,6 +3,7 @@ date: 2025-7-04 12:19:00
 tags:  [小程序, 工具, 应用]
 cover: https://pic4.zhimg.com/v2-b96eb3d286b92f5e388a7e1e94fb19f3_1440w.jpg
 sponsor: true # 是否展示赞助二维码？
+categories: 技术分享,开源项目,工具
 ---
 
 {% raw %}

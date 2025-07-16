@@ -1,7 +1,7 @@
 ---
 title: 汽车电子固件升级（OTA）实现详解
 date: 2023-08-15
-tags: [嵌入式, C语言]
+tags: [嵌入式,C#,教程，技术分享]
 mermaid: true
 categories: [嵌入式]
 cover: https://pic4.zhimg.com/v2-1db2a15e30e57389a8456fca9b47223d_1440w.jpg
