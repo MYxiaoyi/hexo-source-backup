@@ -1,5 +1,5 @@
 ---
-title: 基于Cortex-M0内核的Bootloader开发指南
+title: QML Fluid Element 动态元素
 mermaid: true
 date: 2024-03-22
 tags: [嵌入式, C++, 笔记,Qt, QML]
