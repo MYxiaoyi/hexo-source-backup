@@ -18,7 +18,7 @@ sponsor: true # 是否展示赞助二维码？
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* 宿主页面样式 */
-        body {
+        body2 {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
             padding: 20px;
@@ -71,7 +71,7 @@ sponsor: true # 是否展示赞助二维码？
         }
     </style>
 </head>
-<body>
+<body2>
     <div class="container">
         <h1>冯笑一的小工具</h1>
         
@@ -85,8 +85,9 @@ sponsor: true # 是否展示赞助二维码？
                     <h3>嵌入说明</h3>
                     <p>在您网站的任何位置添加以下代码：</p>
                     <pre>
-&lt;div id="phone-query-widget"&gt;&lt;/div&gt;
-&lt;script src="https://your-domain.com/path/to/widget.js"&gt;&lt;/script&gt;</pre>
+                    &lt;div id="phone-query-widget"&gt;&lt;/div&gt;
+                    &lt;script src="https://your-domain.com/path/to/widget.js"&gt;&lt;/script&gt;
+                    </pre>
                 </div>
             </div>
             
@@ -502,11 +503,10 @@ sponsor: true # 是否展示赞助二维码？
             }
         });
     </script>
-</body>
+</body2>
 </html>
 </div>
 
 <div id="phone-query-widget"></div>
-<script src="https://myxiaoyi.github.io/path/to/widget.js"></script>
 
 {% endraw %}
