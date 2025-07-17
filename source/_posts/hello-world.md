@@ -11,29 +11,6 @@ sponsor: false # 是否展示赞助二维码？
 Welcome to [Hexo](http://zespia.tw/hexo)! This is your very first post. Check [documentation](http://zespia.tw/hexo/docs) to learn how to use.
 
 
-::: info
-This is an info box.
-:::
-
-::: tip
-This is a tip.
-:::
-
-::: warning
-This is a warning.
-:::
-
-::: danger
-This is a dangerous warning.
-:::
-
-::: danger STOP
-Danger zone, do not proceed
-:::
-
-::: details
-This is a details block.
-:::
 
 ---
 ![心海元素爆发](https://upload-bbs.miyoushe.com/upload/2023/07/14/79695828/e4ea64c7a7ed5674a1521e5a7379189f_8744269808192540895.png)
@@ -190,7 +167,18 @@ graph TD
 
 ### 分隔线
 ***
+<div style="float: right; margin-left: 20px; margin-bottom: 20px; width: 300px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(201, 123, 255, 0.3);">
+    <img src="https://myxiaoyi.github.io/images/reimu.png" alt="珊瑚宫心海" style="width: 100%;">
+    <p style="text-align: center; padding: 10px; background: linear-gradient(to right, #fce6f2, #e6d1ff); color: #7a1f7f; font-weight: bold; margin: 0;">海祇岛军师 - 珊瑚宫心海</p>
+</div>
 
+这里是左侧的文本内容。珊瑚宫心海作为海祇岛的"现人神巫女"，不仅是反抗军的领袖，更是一位精通兵法与治愈之术的智者。她以"深海舌鲆鱼"为代号制定的作战计划精妙绝伦，连天领奉行的将领都为之惊叹。
+
+她的元素爆发"海人化羽"不仅能治愈全队，还能召唤化海月持续恢复生命，体现了她既是军师也是医者的双重身份。心海的神之眼是水系，这象征着她如水般柔韧而不可摧的特质——既能以智慧化解冲突，又能以坚韧抵御压迫。
+
+在稻妻内战期间，珊瑚宫心海面临巨大压力：既要抵御幕府军的进攻，又要防止愚人众的渗透，同时还要维持海祇岛民众的生计。这种复杂局面下，她展现了超越年龄的政治智慧和战略眼光。
+
+<div style="clear: both;"></div> <!-- 清除浮动 -->
 
 ---
 
@@ -224,6 +212,32 @@ $$
 行内公式：$E = mc^2$
 
 ---
+
+::: info
+This is an info box.
+:::
+
+::: tip
+This is a tip.
+:::
+
+::: warning
+This is a warning.
+:::
+
+::: danger
+This is a dangerous warning.
+:::
+
+::: danger STOP
+Danger zone, do not proceed
+:::
+
+::: details
+This is a details block.
+:::
+---
+
 
 ## 标签插件
 
