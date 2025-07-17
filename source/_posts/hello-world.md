@@ -1,6 +1,9 @@
+---
 title: Hello World
+mermaid: true
 date: 2013-12-24 17:49:32
 tags:
+
 cover: https://pic4.zhimg.com/v2-b96eb3d286b92f5e388a7e1e94fb19f3_1440w.jpg
 sponsor: false # 是否展示赞助二维码？
 ---
@@ -88,6 +91,7 @@ def kokomi_strategy(situation):
 
 ---
 
+
 ## 列表类型
 ### 无序列表
 - Item 1
@@ -107,6 +111,51 @@ HTML
 
 CSS
 : 层叠样式表
+
+---
+## 流程图 
+
+```mermaid
+graph TD
+    subgraph 海祇岛作战指挥系统
+        style 珊瑚宫心海 fill:#ffc6e2,stroke:#c38fff,stroke-width:3px,color:#8a2f8f
+        style 前线将士 fill:#e6d1ff,stroke:#b56dff
+        style 军情回报 fill:#ffd6f0,stroke:#ff7bac
+        style 海祇岛作战指挥系统 fill:#ffc6e2,stroke:#c38fff,stroke-width:3px,color:#8a2f8f
+
+        珊瑚宫心海["🐚 珊瑚宫心海"] -->|"💧 作战指令"| 战区部署["🎌 战区部署"]
+        战区部署 --> 战区循环["🔁 战区循环"]
+        
+        subgraph 战区循环
+            style 战区循环 fill:#f5e6ff,stroke:#d9a0ff
+            指令传达["✉️ 指令传达"] --> 情报传递["✨ 情报传递"]
+            subgraph 情报传递[128次加密]
+                style 情报传递 fill:#f0d9ff,stroke:#c97bff
+                情报加密["📜 情报加密"] --> 信鸽传送["🕊️ 信鸽传送"]
+            end
+            战况查询["🔍 战况查询"] --> 军情回报["📋 军情回报"]
+        end
+        
+        军情回报 -->|"🌸 战果回报"| 珊瑚宫心海
+    end
+    
+    珊瑚宫心海 --> 作战总结["🌊 战术总结"]
+    
+    classDef coral fill:#ffc6e2,stroke:#c38fff;
+    classDef pink fill:#ffd6f0,stroke:#ff7bac;
+    classDef lavender fill:#e6d1ff,stroke:#b56dff;
+    classDef command fill:#f0e6ff,stroke:#d9a0ff;
+    
+    class 珊瑚宫心海,作战总结 coral;
+    class 军情回报 pink;
+    class 前线将士 lavender;
+    class 战区部署,指令传达,情报传递,战况查询 command;
+    
+    linkStyle 0 stroke:#c38fff,stroke-width:2px;
+    linkStyle 1 stroke:#d9a0ff,stroke-width:2px;
+    linkStyle 2 stroke:#ff7bac,stroke-width:2px;
+```
+
 
 ---
 
@@ -173,38 +222,6 @@ f(x) = \int_{-\infty}^\infty \hat f(\xi)\,e^{2 \pi i \xi x} \,d\xi
 $$
 
 行内公式：$E = mc^2$
-
----
-
-## 流程图 
-
-```mermaid
-graph TD
-    subgraph 海祇岛作战指挥系统
-        style 珊瑚宫心海 fill:#f9d5e5,stroke:#c38fff,stroke-width:2px
-        style 前线将士 fill:#d1e8ff,stroke:#70c3ff
-        style 军情回报 fill:#ffdce5,stroke:#ff7bac
-        
-        珊瑚宫心海["珊瑚宫心海<br>（军师指挥官）"] -->|下达战区指令| 战区部署
-        战区部署["「战区部署」"] --> 战区循环
-        
-        subgraph 战区循环[每个战区作战计划]
-            指令传达["传达作战指令<br>（指定战区编号）"] --> 情报传递
-            subgraph 情报传递[128次加密情报传递]
-                情报加密["加密情报编制<br>（8字密文）"] --> 信鸽传送
-                信鸽传送["忍鸽传送密信<br>至前线将士"]
-            end
-            战况查询["询问战区战况"] --> 军情回报
-        end
-        
-        军情回报 -->|作战结果回报| 珊瑚宫心海
-    end
-    
-    珊瑚宫心海 --> 作战总结["「兵无常势，水无常形」<br>战术调整与总结"]
-    
-    classDef command fill:#f0f9ff,stroke:#70c3ff,stroke-dasharray: 5 5;
-    class 战区部署,指令传达,情报传递,战况查询 command;
-```
 
 ---
 
