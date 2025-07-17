@@ -1,0 +1,17 @@
+{
+  "version": "2.0",
+  "envId": "my-hexo-env",
+  "functionRoot": "./",
+  "framework": {
+    "name": "hexo-blog",
+    "plugins": {
+      "docker": {
+        "use": "@cloudbase/framework-plugin-docker",
+        "inputs": {
+          "dockerfilePath": "Dockerfile",
+          "imagePort": 80
+        }
+      }
+    }
+  }
+}

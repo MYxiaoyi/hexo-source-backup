@@ -692,39 +692,91 @@ sponsor: false # 是否展示赞助二维码？
             return `${year}年${month}月${day}日`;
         }
         
-        // 检查密码
+        // 解决方案：确保所有初始状态在页面加载时正确设置
+        document.addEventListener('DOMContentLoaded', function() {
+            // 确保主内容区域初始为隐藏状态
+            document.getElementById('main-content').style.display = 'none';
+            
+            // 重置密码输入框状态
+            document.getElementById('password').value = '';
+            
+            // 如果有之前的错误消息，清空它
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.textContent = '';
+            
+                        // 添加输入框的回车事件
+            <!-- document.getElementById('password').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    checkPassword();
+                } -->
+        });
+
         function checkPassword() {
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('error-message');
-            
+            const passwordContainer = document.getElementById('password-container');
+            const mainContent = document.getElementById('main-content');
+
             // 正确密码是恋爱纪念日 20230915
             if (password === '20230915') {
-                // 隐藏密码容器
-                document.getElementById('password-container').style.display = 'none';
-                // 显示主内容
-                document.getElementById('main-content').style.display = 'block';
-                // 创建装饰元素
-                createDecorations();
-                // 开始计时器
-                setInterval(updateTimer, 1000);
+                // 动画转场效果
+                passwordContainer.style.transition = 'opacity 0.5s ease-out';
+                passwordContainer.style.opacity = '0';
+                
+                // 延迟隐藏以完成动画
+                setTimeout(() => {
+                    passwordContainer.style.display = 'none';
+                    
+                    // 显示主内容并触发动画
+                    mainContent.style.display = 'block';
+                    mainContent.style.animation = 'fadeIn 0.8s forwards';
+                    
+                    // 创建装饰元素
+                    createDecorations();
+                    
+                    // 开始计时器
+                    setInterval(updateTimer, 1000);
+                }, 500);
+                
             } else {
                 errorMessage.textContent = '密码错误，请再试一次！';
+                
                 // 添加抖动效果
-                document.getElementById('password').classList.add('shake');
+                const inputElement = document.getElementById('password');
+                inputElement.classList.add('shake');
+                
                 setTimeout(() => {
-                    document.getElementById('password').classList.remove('shake');
+                    inputElement.classList.remove('shake');
                 }, 500);
             }
         }
+
+        // 添加动画关键帧
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            @keyframes shake {
+                0% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                50% { transform: translateX(10px); }
+                75% { transform: translateX(-5px); }
+                100% { transform: translateX(0); }
+            }
+            
+            .shake {
+                animation: shake 0.5s;
+            }
+        `;
+        document.head.appendChild(style);
         
-        // 初始化
+        <!-- // 初始化
         document.addEventListener('DOMContentLoaded', () => {
-            // 添加输入框的回车事件
-            document.getElementById('password').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    checkPassword();
-                }
-            });
+
+            }); -->
             
             // 渲染时间轴
             renderlovetimeline();
