@@ -6,7 +6,7 @@ comments: true
 ## 本站信息
 - 站名： 冯笑一的小窝
 - 站长： 冯笑一
-- 地址： https://www.f123.club/
+- 地址： https://f123.club/
 - 备用地址：https://myxiaoyi.github.io/
 
 ## 申请方法

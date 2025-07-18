@@ -432,10 +432,10 @@ comments: true
             
             <div class="intro">
                 <p>你好！我是冯笑一，一名电子信息爱好者，在这里用代码、电路和奇思妙想构建我的"数字乐园"。</p>
-                <p>欢迎访问我的个人博客 <span class="highlight">https://www.f123.club/</span>，这里记录了我在嵌入式开发、硬件设计、物联网探索中的点滴思考与实践。</p>
+                <p>欢迎访问我的个人博客 <span class="highlight">https://f123.club/</span>，这里记录了我在嵌入式开发、硬件设计、物联网探索中的点滴思考与实践。</p>
                 <p>如果你也痴迷于芯片的呼吸、电路的脉搏，这里或许能成为你的灵感加油站！</p>
                 
-                <a href="https://www.f123.club/" class="blog-button">
+                <a href="https://f123.club/" class="blog-button">
                     访问我的博客 <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -612,10 +612,10 @@ comments: true
 
 ## 🌟 近期热门文章
 
-1. **[MM32G0001 Bootloader开发全指南](https://www.f123.club/posts/mm32-bootloader/)**  
+1. **[MM32G0001 Bootloader开发全指南](https://f123.club/2025/03/28/%E5%9F%BA%E4%BA%8ECortex-M0%E5%86%85%E6%A0%B8%E7%9A%84Bootloader%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/)**  
    手把手实现Cortex-M0芯片的固件空中升级！
    
-2. **[C语言|函数指针作为结构体成员实现成员操作](https://www.f123.club/posts/c-function-pointer-in-struct/)**  
+2. **[C语言|函数指针作为结构体成员实现成员操作](https://f123.club/2022/11/16/C%E8%AF%AD%E8%A8%80%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E4%BD%9C%E4%B8%BA%E7%BB%93%E6%9E%84%E4%BD%93%E6%88%90%E5%91%98%E5%AE%9E%E7%8E%B0%E6%88%90%E5%91%98%E6%93%8D%E4%BD%9C/)**  
    深入了解C语音机制的精妙之处。
    
 3. **[基于VScode使用pyOCD进行单片机调试](https://www.f123.club/posts/pyocd-vscode-debug/)**  
@@ -645,7 +645,7 @@ comments: true
 
 
 
-{% externalLinkCard "冯笑一小窝" "https://www.f123.club/" "https://www.f123.club/wp-content/uploads/2021/08/UN77_C6SA5GU39GBAWJ.png" %}
+{% externalLinkCard "冯笑一小窝" "https://f123.club/" "https://f123.club/avatar/avatar.webp" %}
 
 
 {% heatMapCard %}
