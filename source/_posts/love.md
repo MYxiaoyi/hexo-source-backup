@@ -1172,12 +1172,246 @@ categories: 技术分享,开源项目,工具
             
             return tips[zodiac] || "保持积极心态，今天会是美好的一天！";
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            // 新增游戏功能
+            const miniGames = document.querySelectorAll('.mini-game');
+            const gameDetails = document.querySelectorAll('.game-detail');
+            const backButtons = document.querySelectorAll('.back-btn');
+            
+            console.log('所有事件监听器已绑定');
+            console.log(`找到 ${miniGames.length} 个游戏按钮`);
+            console.log(`找到 ${gameDetails.length} 个游戏详情`);
+            console.log(`找到 ${backButtons.length} 个返回按钮`);
+            
+            
+            const calculateLoveBtn = document.getElementById('calculate-love');
+            const lovePercentage = document.getElementById('love-percentage');
+            const loveMessage = document.getElementById('love-message');
         
-        // 新增游戏功能
-        const miniGames = document.querySelectorAll('.mini-game');
-        const gameDetails = document.querySelectorAll('.game-detail');
-        const backButtons = document.querySelectorAll('.back-btn');
-        
+            
+            calculateLoveBtn.addEventListener('click', () => {
+                // 爱情计算器
+                const name1 = document.getElementById('name1').value.trim();
+                const name2 = document.getElementById('name2').value.trim();
+                
+                if (!name1 || !name2) {
+                    alert('请输入两个名字~');
+                    return;
+                }
+                
+                // 生成随机爱情指数（60-100%）
+                const percentage = Math.floor(Math.random() * 41) + 60;
+                lovePercentage.textContent = `${percentage}%`;
+                
+                // 根据百分比显示不同消息
+                if (percentage >= 90) {
+                    loveMessage.innerHTML = "天作之合！你们是命中注定的一对 ❤️";
+                } else if (percentage >= 75) {
+                    loveMessage.innerHTML = "非常般配！你们的爱情会越来越甜蜜 💕";
+                } else {
+                    loveMessage.innerHTML = "有发展潜力！多相处会让感情升温 🌹";
+                }
+            });
+            
+            // 记忆挑战游戏
+            const memoryContainer = document.getElementById('memory-game-container');
+            const memoryResult = document.getElementById('memory-result');
+            const restartMemoryBtn = document.getElementById('restart-memory');
+
+            const memorySymbols = ['❤️', '🌟', '🎁', '💋', '🌸', '🎈', '🍭', '🌈'];
+            let memoryCards = [];
+            let flippedCards = [];
+            let matchedPairs = 0;
+
+            // 初始化记忆游戏的函数
+            function initMemoryGame() {
+                memoryContainer.innerHTML = '';
+                memoryCards = [...memorySymbols, ...memorySymbols];
+                flippedCards = [];
+                matchedPairs = 0;
+                memoryResult.textContent = "点击卡片开始游戏";
+
+                // 洗牌
+                for (let i = memoryCards.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [memoryCards[i], memoryCards[j]] = [memoryCards[j], memoryCards[i]];
+                }
+
+                // 创建卡片
+                memoryCards.forEach((symbol, index) => {
+                    const card = document.createElement('div');
+                    card.classList.add('memory-card');
+                    card.dataset.index = index;
+                    card.dataset.symbol = symbol;
+                    
+                    // 卡片正面（默认图标）
+                    const front = document.createElement('div');
+                    front.classList.add('memory-card-face', 'memory-card-front');
+                    front.textContent = '❓'; // 默认图标
+                    
+                    // 卡片背面（实际图形）
+                    const back = document.createElement('div');
+                    back.classList.add('memory-card-face', 'memory-card-back');
+                    back.textContent = symbol;
+                    
+                    card.appendChild(front);
+                    card.appendChild(back);
+                    card.addEventListener('click', flipMemoryCard);
+                    memoryContainer.appendChild(card);
+                });
+            }
+
+            function flipMemoryCard() {
+                if (flippedCards.length < 2 && !this.classList.contains('flipped')) {
+                    this.classList.add('flipped');
+                    flippedCards.push(this);
+
+                    if (flippedCards.length === 2) {
+                        setTimeout(checkMatch, 500);
+                    }
+                }
+            }
+
+            function checkMatch() {
+                const card1 = flippedCards[0];
+                const card2 = flippedCards[1];
+
+                if (card1.dataset.symbol === card2.dataset.symbol) {
+                    card1.classList.add('matched');
+                    card2.classList.add('matched');
+                    matchedPairs++;
+
+                    if (matchedPairs === memorySymbols.length) {
+                        memoryResult.innerHTML = "🎉 恭喜！你完成了挑战！";
+                    } else {
+                        memoryResult.textContent = `已匹配: ${matchedPairs}/${memorySymbols.length}`;
+                    }
+                } else {
+                    // 翻回正面时移除flipped类
+                    setTimeout(() => {
+                        card1.classList.remove('flipped');
+                        card2.classList.remove('flipped');
+                    }, 500);
+                }
+
+                flippedCards = [];
+            }
+
+            // 修改游戏点击事件处理
+            miniGames.forEach(game => {
+                game.addEventListener('click', () => {
+                    const gameId = game.dataset.game;
+                    document.getElementById('mini-game-grid').style.display = 'none';
+                    document.getElementById(gameId).style.display = 'block';
+                    
+                    // 只有在点击记忆游戏时才初始化
+                    if (gameId === 'memory-game') {
+                        initMemoryGame();
+                    }
+                });
+            });
+
+            // 重新开始按钮
+            restartMemoryBtn.addEventListener('click', initMemoryGame);
+            
+            // 甜品占卜
+            const dessertOptions = document.querySelectorAll('.dessert-option');
+            const dessertResult = document.getElementById('dessert-result');
+            
+            dessertOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    const dessert = option.dataset.dessert;
+                    let message = "";
+                    
+                    switch (dessert) {
+                        case 'cake':
+                            message = "🍰 蛋糕代表甜蜜生活！今天会有令人开心的小惊喜，记得留意身边的美好事物哦~";
+                            break;
+                        case 'icecream':
+                            message = "🍦 冰淇淋代表清凉心情！今天适合放松自己，做些让自己开心的事情，别太劳累~";
+                            break;
+                        case 'chocolate':
+                            message = "🍫 巧克力代表浪漫爱情！今天感情运势上升，适合表达心意或安排甜蜜约会~";
+                            break;
+                        case 'cookie':
+                            message = "🍪 饼干代表温馨日常！今天适合与家人朋友共度美好时光，享受简单的小幸福~";
+                            break;
+                    }
+                    
+                    dessertResult.innerHTML = message;
+                });
+            });
+            
+            // 亲亲计数器
+            const kissCount = document.getElementById('kiss-count');
+            const addKissBtn = document.getElementById('add-kiss');
+            const resetKissBtn = document.getElementById('reset-kiss');
+            let kissCounter = 0;
+            
+            addKissBtn.addEventListener('click', () => {
+                kissCounter++;
+                kissCount.textContent = kissCounter;
+                
+                // 添加动画效果
+                kissCount.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    kissCount.style.transform = 'scale(1)';
+                }, 300);
+            });
+            
+            resetKissBtn.addEventListener('click', () => {
+                kissCounter = 0;
+                kissCount.textContent = kissCounter;
+            });
+            
+            // 幸运饼干
+            const fortuneCookie = document.querySelector('.fortune-cookie');
+            const fortuneMessage = document.getElementById('fortune-message');
+            
+            const fortuneMessages = [
+                "今天会有意想不到的好运降临！",
+                "微笑是最好的化妆品，今天多笑笑吧~",
+                "你的善良会带来美好的回报",
+                "勇敢表达你的心意，会有惊喜结果",
+                "小小的举动会带来大大的幸福",
+                "今天适合尝试新事物，会有意外收获",
+                "你的魅力值今天爆表！",
+                "放松心情，享受当下的美好时光",
+                "给爱的人一个拥抱，温暖彼此",
+                "美好的事情正在向你走来"
+            ];
+            
+            fortuneCookie.addEventListener('click', () => {
+                const randomIndex = Math.floor(Math.random() * fortuneMessages.length);
+                fortuneMessage.textContent = fortuneMessages[randomIndex];
+                
+                // 添加动画效果
+                fortuneCookie.style.transform = 'rotate(10deg)';
+                setTimeout(() => {
+                    fortuneCookie.style.transform = 'rotate(0deg)';
+                }, 200);
+            });
+            
+            // 默契测试
+            const testCompatibilityBtn = document.getElementById('test-compatibility');
+            const compatibilityPercentage = document.getElementById('compatibility-percentage');
+            const compatibilityMessage = document.getElementById('compatibility-message');
+            
+            testCompatibilityBtn.addEventListener('click', () => {
+                // 生成随机默契指数（70-100%）
+                const percentage = Math.floor(Math.random() * 31) + 70;
+                compatibilityPercentage.textContent = `${percentage}%`;
+                
+                // 根据百分比显示不同消息
+                if (percentage >= 90) {
+                    compatibilityMessage.innerHTML = "心灵相通！你们真是天生一对 ❤️";
+                } else if (percentage >= 80) {
+                    compatibilityMessage.innerHTML = "非常默契！彼此了解程度很高 💕";
+                } else {
+                    compatibilityMessage.innerHTML = "默契不错！多交流会更加了解彼此 🌹";
+                }
+            });
+
         // 显示游戏详情
         miniGames.forEach(game => {
             game.addEventListener('click', () => {
@@ -1196,223 +1430,7 @@ categories: 技术分享,开源项目,工具
                 document.getElementById('mini-game-grid').style.display = 'grid';
             });
         });
-        
-        // 爱情计算器
-        const calculateLoveBtn = document.getElementById('calculate-love');
-        const lovePercentage = document.getElementById('love-percentage');
-        const loveMessage = document.getElementById('love-message');
-        
-        calculateLoveBtn.addEventListener('click', () => {
-            const name1 = document.getElementById('name1').value.trim();
-            const name2 = document.getElementById('name2').value.trim();
-            
-            if (!name1 || !name2) {
-                alert('请输入两个名字~');
-                return;
-            }
-            
-            // 生成随机爱情指数（60-100%）
-            const percentage = Math.floor(Math.random() * 41) + 60;
-            lovePercentage.textContent = `${percentage}%`;
-            
-            // 根据百分比显示不同消息
-            if (percentage >= 90) {
-                loveMessage.innerHTML = "天作之合！你们是命中注定的一对 ❤️";
-            } else if (percentage >= 75) {
-                loveMessage.innerHTML = "非常般配！你们的爱情会越来越甜蜜 💕";
-            } else {
-                loveMessage.innerHTML = "有发展潜力！多相处会让感情升温 🌹";
-            }
-        });
-        
-        // 记忆挑战游戏
-        // 记忆挑战游戏
-        const memoryContainer = document.getElementById('memory-game-container');
-        const memoryResult = document.getElementById('memory-result');
-        const restartMemoryBtn = document.getElementById('restart-memory');
-
-        const memorySymbols = ['❤️', '🌟', '🎁', '💋', '🌸', '🎈', '🍭', '🌈'];
-        let memoryCards = [];
-        let flippedCards = [];
-        let matchedPairs = 0;
-
-        function initMemoryGame() {
-            memoryContainer.innerHTML = '';
-            memoryCards = [...memorySymbols, ...memorySymbols];
-            flippedCards = [];
-            matchedPairs = 0;
-            memoryResult.textContent = "点击卡片开始游戏";
-
-            // 洗牌
-            for (let i = memoryCards.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [memoryCards[i], memoryCards[j]] = [memoryCards[j], memoryCards[i]];
-            }
-
-            // 创建卡片
-            memoryCards.forEach((symbol, index) => {
-                const card = document.createElement('div');
-                card.classList.add('memory-card');
-                card.dataset.index = index;
-                card.dataset.symbol = symbol;
-                
-                // 卡片正面（默认图标）
-                const front = document.createElement('div');
-                front.classList.add('memory-card-face', 'memory-card-front');
-                front.textContent = '❓'; // 默认图标
-                
-                // 卡片背面（实际图形）
-                const back = document.createElement('div');
-                back.classList.add('memory-card-face', 'memory-card-back');
-                back.textContent = symbol;
-                
-                card.appendChild(front);
-                card.appendChild(back);
-                card.addEventListener('click', flipMemoryCard);
-                memoryContainer.appendChild(card);
-            });
-        }
-
-        function flipMemoryCard() {
-            if (flippedCards.length < 2 && !this.classList.contains('flipped')) {
-                this.classList.add('flipped');
-                flippedCards.push(this);
-
-                if (flippedCards.length === 2) {
-                    setTimeout(checkMatch, 500);
-                }
-            }
-        }
-
-        function checkMatch() {
-            const card1 = flippedCards[0];
-            const card2 = flippedCards[1];
-
-            if (card1.dataset.symbol === card2.dataset.symbol) {
-                card1.classList.add('matched');
-                card2.classList.add('matched');
-                matchedPairs++;
-
-                if (matchedPairs === memorySymbols.length) {
-                    memoryResult.innerHTML = "🎉 恭喜！你完成了挑战！";
-                } else {
-                    memoryResult.textContent = `已匹配: ${matchedPairs}/${memorySymbols.length}`;
-                }
-            } else {
-                // 翻回正面时移除flipped类
-                setTimeout(() => {
-                    card1.classList.remove('flipped');
-                    card2.classList.remove('flipped');
-                }, 500);
-            }
-
-            flippedCards = [];
-        }
-
-        // 初始化游戏
-        restartMemoryBtn.addEventListener('click', initMemoryGame);
-        //initMemoryGame();
-        
-        // 甜品占卜
-        const dessertOptions = document.querySelectorAll('.dessert-option');
-        const dessertResult = document.getElementById('dessert-result');
-        
-        dessertOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const dessert = option.dataset.dessert;
-                let message = "";
-                
-                switch (dessert) {
-                    case 'cake':
-                        message = "🍰 蛋糕代表甜蜜生活！今天会有令人开心的小惊喜，记得留意身边的美好事物哦~";
-                        break;
-                    case 'icecream':
-                        message = "🍦 冰淇淋代表清凉心情！今天适合放松自己，做些让自己开心的事情，别太劳累~";
-                        break;
-                    case 'chocolate':
-                        message = "🍫 巧克力代表浪漫爱情！今天感情运势上升，适合表达心意或安排甜蜜约会~";
-                        break;
-                    case 'cookie':
-                        message = "🍪 饼干代表温馨日常！今天适合与家人朋友共度美好时光，享受简单的小幸福~";
-                        break;
-                }
-                
-                dessertResult.innerHTML = message;
-            });
-        });
-        
-        // 亲亲计数器
-        const kissCount = document.getElementById('kiss-count');
-        const addKissBtn = document.getElementById('add-kiss');
-        const resetKissBtn = document.getElementById('reset-kiss');
-        let kissCounter = 0;
-        
-        addKissBtn.addEventListener('click', () => {
-            kissCounter++;
-            kissCount.textContent = kissCounter;
-            
-            // 添加动画效果
-            kissCount.style.transform = 'scale(1.2)';
-            setTimeout(() => {
-                kissCount.style.transform = 'scale(1)';
-            }, 300);
-        });
-        
-        resetKissBtn.addEventListener('click', () => {
-            kissCounter = 0;
-            kissCount.textContent = kissCounter;
-        });
-        
-        // 幸运饼干
-        const fortuneCookie = document.querySelector('.fortune-cookie');
-        const fortuneMessage = document.getElementById('fortune-message');
-        
-        const fortuneMessages = [
-            "今天会有意想不到的好运降临！",
-            "微笑是最好的化妆品，今天多笑笑吧~",
-            "你的善良会带来美好的回报",
-            "勇敢表达你的心意，会有惊喜结果",
-            "小小的举动会带来大大的幸福",
-            "今天适合尝试新事物，会有意外收获",
-            "你的魅力值今天爆表！",
-            "放松心情，享受当下的美好时光",
-            "给爱的人一个拥抱，温暖彼此",
-            "美好的事情正在向你走来"
-        ];
-        
-        fortuneCookie.addEventListener('click', () => {
-            const randomIndex = Math.floor(Math.random() * fortuneMessages.length);
-            fortuneMessage.textContent = fortuneMessages[randomIndex];
-            
-            // 添加动画效果
-            fortuneCookie.style.transform = 'rotate(10deg)';
-            setTimeout(() => {
-                fortuneCookie.style.transform = 'rotate(0deg)';
-            }, 200);
-        });
-        
-        // 默契测试
-        const testCompatibilityBtn = document.getElementById('test-compatibility');
-        const compatibilityPercentage = document.getElementById('compatibility-percentage');
-        const compatibilityMessage = document.getElementById('compatibility-message');
-        
-        testCompatibilityBtn.addEventListener('click', () => {
-            // 生成随机默契指数（70-100%）
-            const percentage = Math.floor(Math.random() * 31) + 70;
-            compatibilityPercentage.textContent = `${percentage}%`;
-            
-            // 根据百分比显示不同消息
-            if (percentage >= 90) {
-                compatibilityMessage.innerHTML = "心灵相通！你们真是天生一对 ❤️";
-            } else if (percentage >= 80) {
-                compatibilityMessage.innerHTML = "非常默契！彼此了解程度很高 💕";
-            } else {
-                compatibilityMessage.innerHTML = "默契不错！多交流会更加了解彼此 🌹";
-            }
-        });
-        
-        // 初始化记忆游戏
-        initMemoryGame();
+    }
     </script>
 </body>
 </html>
